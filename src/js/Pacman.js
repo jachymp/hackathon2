@@ -1,21 +1,29 @@
 class Pacman {
   constructor() {
-    this.mount = true;
-    this.ypos = 200;
-    this.xpos = 200;
+    this.mouth = true;
+    this.ypos = 0;
+    this.xpos = 0;
+    this.element = null;
+  }
+
+  render() {
+    this.element = document.createElement("div");
+    this.element.className = "entity entity--pac pacboy-active-light";
+    return this.element;
   }
 
   move() {
-    const entity = document.querySelector(".entity");
+    // this.element = document.querySelector(".entity--pac");
     const packmanLight = document.querySelector(".pacboy-active-light");
-    entity.style.top = this.xpos + "px";
-    entity.style.left = this.ypos + "px";
+    this.element.style.top = this.xpos + "px";
+    this.element.style.left = this.ypos + "px";
     document.addEventListener("keydown", (event) => {
-      this.mount = !this.mount;
+      console.log("FIRE");
+      this.mouth = !this.mouth;
       if (event.code === "ArrowRight") {
         this.xpos += 85;
-        entity.style.left = this.xpos + "px";
-        if (this.mount === true) {
+        this.element.style.left = this.xpos + "px";
+        if (this.mouth === true) {
           packmanLight.style.backgroundPositionX = "85px";
         } else {
           packmanLight.style.backgroundPositionX = "0px";
@@ -24,8 +32,8 @@ class Pacman {
       }
       if (event.code === "ArrowLeft") {
         this.xpos -= 85;
-        entity.style.left = this.xpos + "px";
-        if (this.mount === true) {
+        this.element.style.left = this.xpos + "px";
+        if (this.mouth === true) {
           packmanLight.style.backgroundPositionX = "0px";
         } else {
           packmanLight.style.backgroundPositionX = "85px";
@@ -34,8 +42,8 @@ class Pacman {
       }
       if (event.code === "ArrowUp") {
         this.ypos -= 85;
-        entity.style.top = this.ypos + "px";
-        if (this.mount === true) {
+        this.element.style.top = this.ypos + "px";
+        if (this.mouth === true) {
           packmanLight.style.backgroundPositionX = "0px";
         } else {
           packmanLight.style.backgroundPositionX = "85px";
@@ -44,8 +52,8 @@ class Pacman {
       }
       if (event.code === "ArrowDown") {
         this.ypos += 85;
-        entity.style.top = this.ypos + "px";
-        if (this.mount === true) {
+        this.element.style.top = this.ypos + "px";
+        if (this.mouth === true) {
           packmanLight.style.backgroundPositionX = "0px";
         } else {
           packmanLight.style.backgroundPositionX = "85px";
